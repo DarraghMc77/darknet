@@ -18,6 +18,10 @@ submission/
 cfg/
 darknet
 .fuse*
+GroundTruth/
+GT-txt/
+Gt_Images
+GT-Videos/
 
 # OS Generated #
 .DS_Store*
