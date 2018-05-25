@@ -77,12 +77,27 @@ def cv_read_video(video_location, test_file):
     while (cap.isOpened()):
         ret, frame = cap.read()
 
+        # fh = open('test.jpg'.format(count), 'w')
+        # fh.write(frame)
+        # fh.close()
         cv2.imwrite('test.jpg', frame)
+        # continue
+
+        # count = count + 1
 
         width = 352
         height = 352
 
         resized_frame = cropimread(frame, width, height)
+
+        # result = tfnet.return_predict(resized_frame)
+
+        # if len(result) > 0:
+        #     for res in result:
+        #         res['image'] = count
+        #     print(result)
+        #
+        #     f.write(str(result) + '\n')
 
         boxes = dn.detect(net, meta, 'Gt_Images/' + test_file +'/test{}.jpg'.format(count))
 
@@ -116,7 +131,15 @@ def cv_read_video(video_location, test_file):
 
         f.write(str(result) + '\n')
 
+        # cv2.imwrite('Gt_Images/bottle/test{}.jpg'.format(count), resized_frame)
+
         count = count + 1
+        # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # resized_frame = cv2.resize(frame, (300, 300))
+
+        # pts1 = numpy.float32([[0.8152174, 0.0, 0.0], [0.0, 0.8152174, 0.0], [0.0, 0.0, 1.0]])
+        # gray = cv2.warpAffine(frame, pts1, (300, 300))
+        # gray = frame[pts1]
 
         cv2.imshow('frame', resized_frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
